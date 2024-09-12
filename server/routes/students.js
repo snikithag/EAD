@@ -36,10 +36,12 @@ router.post('/', async(req,res) =>
     const student = new Student
    ({
         name: req.body.name,
+        email: req.body.email,
+        mobile: req.body.mobile,
         tech: req.body.tech,
         sub: req.body.sub,
-        rollno:req.body.rollno,
-        branch:req.body.branch
+        rollno: req.body.rollno,
+        branch: req.body.branch
     })
 
     try

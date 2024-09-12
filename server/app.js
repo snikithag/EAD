@@ -1,20 +1,22 @@
 const express = require('express')
-const bodyParser=require('body-parser')
+//const bodyParser=require('body-parser')
 const mongoose = require('mongoose')
 const cors=require('cors')
-const url = 'mongodb://localhost/CBIT'
+const studentRouter = require('./routes/students')
+//const url = 'mongodb://127.0.0.1:27017/EAD'
+//const url = 'mongodb://127.0.0.1:27020,127.0.0.1:27021,127.0.0.1:27022/cbitit1?replicaSet=m101';
+const url='mongodb+srv://snikithagovindu:7799928881@mern1.6hjgk.mongodb.net/?retryWrites=true&w=majority&appName=MERN1'
 const app = express()
-mongoose.connect(url, {useNewUrlParser:true})
+mongoose.connect(url)
 const con = mongoose.connection
 con.on('open', () =>
 {
 console.log('connected...')
 })
 app.use(cors())
-app.use(bodyParser.urlencoded({extended:true}))
+//app.use(bodyParser.urlencoded({extended:true}))
 app.use(express.json())
-const alienRouter = require('./routes/studentroutes')
-app.use('/aliens',alienRouter)
+app.use('/students',studentRouter)
 app.listen(9000, () =>
 {
 console.log('Server started')
